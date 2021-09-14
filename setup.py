@@ -18,7 +18,7 @@ test_requirements = [
 
 setup(
     name='dbaas_foxha',
-    version='0.2.8',
+    version='0.3.0',
     description="DBaaS FoxHA is a simple FoxHA api wrapper for DBaaS",
     long_description=readme + '\n\n' + history,
     author="Mauro Murari",
