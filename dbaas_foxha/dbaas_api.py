@@ -34,3 +34,10 @@ class DatabaseAsAServiceApi(object):
     @property
     def database_name(self):
         return self.credentials.get_parameter_by_name('database_name')
+    
+    @property
+    def kill_connections(self):
+        should_kill = self.credentials.get_parameter_by_name('kill_connections')
+        if should_kill in ("yes", "1"):
+            return True
+        return False
