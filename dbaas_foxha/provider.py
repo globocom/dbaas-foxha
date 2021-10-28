@@ -24,19 +24,19 @@ class FoxHAProvider(object):
 
     def switchover(self, group_name):
         LOG.info("Doing switchover to: {}".format(group_name))
-        return inner_logic.switchover(group_name, self.fox_connection)
+        return inner_logic.switchover(group_name, self.fox_connection, kill=self.kill_connections)
 
     def set_master(self, group_name, node_ip):
         nodes = inner_logic.get_nodes(group_name, self.fox_connection)
         for node in nodes:
             if node.ip == node_ip:
-                return inner_logic.set_read_write(node, self.fox_connection)
+                return inner_logic.set_read_write(node, self.fox_connection, kill=self.kill_connections)
 
     def set_read_only(self, group_name, node_ip):
         nodes = inner_logic.get_nodes(group_name, self.fox_connection)
         for node in nodes:
             if node.ip == node_ip:
-                return inner_logic.set_read_only(node, self.fox_connection)
+                return inner_logic.set_read_only(node, self.fox_connection, kill=self.kill_connections)
 
     def start(self, group_name):
         LOG.info("Start group: {}".format(group_name))
